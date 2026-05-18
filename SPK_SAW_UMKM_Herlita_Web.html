@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SPK Produk Unggulan UMKM — Metode SAW</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #f4f2ee;
+    --surface: #ffffff;
+    --surface2: #f9f8f6;
+    --border: #e3ddd6;
+    --border2: #ccc7bf;
+    --text: #1c1a17;
+    --text2: #6b6560;
+    --text3: #a09b95;
+    --green: #1e6b45;
+    --green-l: #e6f4ec;
+    --gold: #c9960e;
+    --gold-l: #fdf4da;
+    --red: #b83232;
+    --red-l: #fdeaea;
+    --blue: #1a5fa8;
+    --blue-l: #e5f0fb;
+    --silver: #707880;
+    --silver-l: #f0f2f4;
+    --bronze: #9a5020;
+    --bronze-l: #fdf0e6;
+  }
+  body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; font-size: 14px; }
+
+  /* ── HEADER ── */
+  .header {
+    background: var(--green);
+    padding: 0;
+    display: flex;
+    align-items: stretch;
+  }
+  .header-stripe {
+    width: 8px;
+    background: var(--gold);
+    flex-shrink: 0;
+  }
+  .header-body {
+    padding: 1.2rem 2rem;
+    flex: 1;
+  }
+  .header-top { display: flex; align-items: center; gap: 12px; margin-bottom: 4px; }
+  .chip { background: var(--gold); color: #fff; font-size: 11px; font-weight: 700; letter-spacing: 0.02em; padding: 3px 10px; border-radius: 4px; }
+  .chip-outline { border: 1px solid rgba(255,255,255,0.4); color: rgba(255,255,255,0.8); font-size: 11px; font-weight: 500; padding: 2px 8px; border-radius: 4px; }
+  .header-body h1 { font-size: 22px; font-weight: 700; color: #fff; letter-spacing: -0.01em; }
+  .header-body p { font-size: 13px; color: rgba(255,255,255,0.7); margin-top: 4px; }
+
+  /* ── LAYOUT STRUKTUR BARU ── */
+  .wrap { max-width: 1400px; margin: 0 auto; padding: 1.75rem 1.5rem; display: flex; flex-direction: column; gap: 1.75rem; }
+  
+  /* Bagian Atas: 3 Kolom Sejajar */
+  .section-top {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1.5rem;
+    align-items: start;
+  }
+  
+  /* Bagian Bawah: Mengisi Area Tengah Menurun */
+  .section-bottom {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  /* ── CARDS ── */
+  .card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+  .card-head { display: flex; align-items: center; gap: 10px; padding: 0.8rem 1.2rem; background: var(--surface2); border-bottom: 1px solid var(--border); }
+  .card-icon { width: 28px; height: 28px; border-radius: 7px; background: var(--green); display: flex; align-items: center; justify-content: center; font-size: 14px; color: #fff; flex-shrink: 0; }
+  .card-head h2 { font-size: 14px; font-weight: 700; color: var(--text); text-transform: none; letter-spacing: normal; }
+  .card-badge { margin-left: auto; background: var(--green-l); color: var(--green); font-size: 11px; font-weight: 700; padding: 2px 9px; border-radius: 20px; white-space: nowrap; }
+  .card-body { padding: 1.2rem; }
+
+  /* ── FORM ── */
+  label.lbl { display: block; font-size: 12px; font-weight: 600; color: var(--text2); margin-bottom: 5px; }
+  .fgroup { margin-bottom: 0.8rem; }
+  input[type=text], input[type=number], select, textarea {
+    width: 100%; padding: 8px 12px; border: 1px solid var(--border); border-radius: 7px;
+    font-family: inherit; font-size: 13px; background: var(--surface); color: var(--text);
+    outline: none; transition: border-color .15s;
+  }
+  input:focus, select:focus, textarea:focus { border-color: var(--green); box-shadow: 0 0 0 3px rgba(30,107,69,.09); }
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .grid3 { display: grid; grid-template-columns: 140px 70px 1fr; gap: 8px; align-items: end; }
+  .btn-add { display: flex; align-items: center; justify-content: center; gap: 6px; width: 100%; padding: 9px; border-radius: 7px; background: var(--green); color: #fff; border: none; font-family: inherit; font-size: 13px; font-weight: 600; cursor: pointer; margin-top: 6px; transition: background .15s; }
+  .btn-add:hover { background: #175838; }
+  .btn-calc { display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; padding: 12px; border-radius: 9px; background: var(--gold); color: #fff; border: none; font-family: inherit; font-size: 15px; font-weight: 700; cursor: pointer; transition: background .15s; }
+  .btn-calc:hover { background: #b0820c; }
+  .btn-reset { display: flex; align-items: center; justify-content: center; gap: 6px; width: 100%; padding: 8px; border-radius: 7px; background: transparent; color: var(--text2); border: 1px solid var(--border); font-family: inherit; font-size: 12px; font-weight: 600; cursor: pointer; margin-top: 8px; }
+  .btn-reset:hover { background: var(--surface2); }
+  .btn-del { background: none; border: none; color: var(--red); cursor: pointer; font-size: 12px; font-weight: 700; padding: 2px 6px; border-radius: 4px; font-family: inherit; }
+  .btn-del:hover { background: var(--red-l); }
+  .divider { border: none; border-top: 1px solid var(--border); margin: 0.9rem 0; }
+  .note { font-size: 12px; color: var(--text2); background: var(--surface2); border: 1px solid var(--border); border-radius: 6px; padding: 8px 10px; margin-top: 8px; line-height: 1.5; }
+
+  /* ── KRITERIA TABLE ── */
+  .kt { width: 100%; border-collapse: collapse; font-size: 12px; margin-top: 6px; }
+  .kt th { background: var(--surface2); border: 1px solid var(--border); padding: 6px 8px; font-size: 11px; font-weight: 700; color: var(--text2); text-align: left; }
+  .kt td { border: 1px solid var(--border); padding: 6px 8px; vertical-align: middle; }
+  .kt tr:hover td { background: var(--green-l); }
+  .badge { font-size: 11px; font-weight: 600; padding: 2px 7px; border-radius: 4px; display: inline-block; }
+  .b-benefit { background: var(--green-l); color: var(--green); }
+  .b-cost { background: var(--red-l); color: var(--red); }
+
+  /* ── BOBOT SLIDER ── */
+  input[type=range] { -webkit-appearance: none; width: 100%; height: 4px; background: var(--border); border-radius: 2px; outline: none; cursor: pointer; padding: 0; border: none; box-shadow: none; }
+  input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; width: 14px; height: 14px; border-radius: 50%; background: var(--green); cursor: pointer; }
+  .bnum { display: inline-flex; align-items: center; justify-content: center; width: 34px; height: 22px; background: var(--green); color: #fff; border-radius: 5px; font-size: 11px; font-weight: 700; }
+
+  /* ── STEP BAR ── */
+  .steps { display: flex; gap: 0; margin-bottom: 0.25rem; }
+  .step { flex: 1; padding: 8px 10px; font-size: 12px; font-weight: 600; color: var(--text3); text-align: center; background: var(--surface); border: 1px solid var(--border); border-right: none; }
+  .step:first-child { border-radius: 7px 0 0 7px; }
+  .step:last-child { border-right: 1px solid var(--border); border-radius: 0 7px 7px 0; }
+  .step.done { background: var(--green-l); color: var(--green); border-color: var(--green); }
+
+  /* ── TABS ── */
+  .tab-row { display: flex; border-bottom: 1px solid var(--border); background: var(--surface2); }
+  .tab-btn { padding: 10px 18px; font-family: inherit; font-size: 13px; font-weight: 600; cursor: pointer; background: none; border: none; border-bottom: 2px solid transparent; color: var(--text2); margin-bottom: -1px; }
+  .tab-btn.active { color: var(--green); border-bottom-color: var(--green); font-weight: 700; }
+  .tab-pane { display: none; padding: 1.2rem; }
+  .tab-pane.active { display: block; }
+
+  /* ── DATA TABLES ── */
+  .tbl-wrap { overflow-x: auto; }
+  .dtbl { width: 100%; border-collapse: collapse; font-size: 13px; min-width: 500px; }
+  .dtbl th { padding: 10px; font-size: 12px; font-weight: 700; text-align: center; border: 1px solid rgba(0,0,0,.12); }
+  .dtbl th:first-child { text-align: left; }
+  .dtbl td { padding: 9px 10px; border: 1px solid var(--border); text-align: center; vertical-align: middle; }
+  .dtbl td:first-child { text-align: left; font-weight: 600; }
+  .dtbl tr:nth-child(even) td { background: var(--surface2); }
+  .dtbl .hrow th { background: #2c3e50; color: #fff; }
+  .dtbl .brow td { background: var(--green-l) !important; font-weight: 700; color: var(--green); }
+  .dtbl .trow td { background: #f8f7f5 !important; font-size: 11px; color: var(--text2); font-style: italic; }
+  .dtbl .nhead th { background: #2c3e50; color: #fff; }
+
+  /* ── RANKING ── */
+  .rtbl { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .rtbl th { padding: 10px 12px; font-size: 12px; font-weight: 700; text-align: left; border: 1px solid rgba(0,0,0,.1); background: var(--green); color: #fff; }
+  .rtbl th:last-child { text-align: right; }
+  .rtbl td { padding: 10px 12px; border: 1px solid var(--border); vertical-align: middle; }
+  .rtbl td:last-child { text-align: right; font-size: 15px; font-weight: 700; color: var(--green); }
+  .rtbl .r1 td { background: #fffcf0; border-left: 4px solid var(--gold); }
+  .rtbl .r2 td { background: #f8f9fa; border-left: 4px solid var(--silver); }
+  .rtbl .r3 td { background: #fef6f0; border-left: 4px solid var(--bronze); }
+  .rtbl .rx td { border-left: 4px solid var(--border2); }
+  .medal { display: inline-flex; align-items: center; justify-content: center; width: 26px; height: 26px; border-radius: 50%; font-weight: 700; font-size: 12px; }
+  .m1 { background: var(--gold); color: #fff; }
+  .m2 { background: var(--silver); color: #fff; }
+  .m3 { background: var(--bronze); color: #fff; }
+  .mx { background: var(--border2); color: var(--text2); }
+  .bar-wrap { display: flex; align-items: center; gap: 8px; }
+  .bar { flex: 1; height: 8px; background: var(--border); border-radius: 4px; overflow: hidden; }
+  .bar-fill { height: 100%; border-radius: 4px; transition: width .5s; }
+  .r1 .bar-fill { background: var(--gold); }
+  .r2 .bar-fill { background: var(--silver); }
+  .r3 .bar-fill { background: var(--bronze); }
+  .rx .bar-fill { background: var(--border2); }
+
+  /* ── REC BOX ── */
+  .rec { background: linear-gradient(135deg, var(--green-l) 0%, #f2fbf6 100%); border: 1.5px solid var(--green); border-radius: 10px; padding: 1.2rem; display: flex; align-items: center; gap: 1rem; margin-bottom: 1.2rem; }
+  .rec-em { font-size: 32px; }
+  .rec-name { font-size: 16px; font-weight: 700; color: var(--green); }
+  .rec-sub { font-size: 13px; color: var(--text2); margin-top: 4px; }
+
+  /* ── EMPTY ── */
+  .empty { text-align: center; padding: 2.5rem 1rem; color: var(--text3); }
+  .empty-icon { font-size: 32px; margin-bottom: 6px; }
+  .empty p { font-size: 13px; }
+
+  /* ── ALT VALUES INPUT ── */
+  .av-grid { display: grid; gap: 8px; margin-top: 6px; }
+
+  /* FORMULA SECTION */
+  .formula-box { background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; padding: 0.9rem 1rem; font-size: 12px; line-height: 1.7; }
+  .formula-box code { font-family: monospace; background: #e8e4de; padding: 2px 5px; border-radius: 3px; font-size: 11px; }
+  .sec-label { font-size: 11px; font-weight: 700; color: var(--text3); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.02em; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-stripe"></div>
+  <div class="header-body">
+    <div class="header-top">
+      <span class="chip">SPK · SAW</span>
+      <span class="chip-outline">Metode Simple Additive Weighting</span>
+    </div>
+    <h1>Sistem Pendukung Keputusan Pemilihan Produk Unggulan UMKM</h1>
+    <p>Tugas Proyek Akhir &nbsp;·&nbsp; Herlita &nbsp;·&nbsp; NPM G1A023018</p>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <div class="section-top">
+
+    <div class="card">
+      <div class="card-head">
+        <div class="card-icon">⚖</div>
+        <h2>Kriteria &amp; Bobot</h2>
+        <span class="card-badge" id="kCount">5 kriteria</span>
+      </div>
+      <div class="card-body">
+        <div class="sec-label">Tambah Kriteria</div>
+        <div class="grid3">
+          <div class="fgroup" style="margin:0"><input type="text" id="kNama" placeholder="Nama kriteria..." maxlength="30"></div>
+          <div class="fgroup" style="margin:0"><input type="number" id="kBobot" placeholder="Bobot" min="1" max="100" value="10" step="1"></div>
+          <div class="fgroup" style="margin:0">
+            <select id="kTipe">
+              <option value="benefit">Benefit</option>
+              <option value="cost">Cost</option>
+            </select>
+          </div>
+        </div>
+        <button class="btn-add" onclick="addKriteria()">＋ Tambah Kriteria</button>
+        <hr class="divider">
+        <div class="sec-label">Daftar Kriteria (Bobot dalam %)</div>
+        <table class="kt">
+          <thead><tr><th>Kode</th><th>Nama</th><th>Bobot %</th><th>Tipe</th><th></th></tr></thead>
+          <tbody id="ktbody"></tbody>
+        </table>
+        <div class="note">
+          <strong>Aturan Bobot:</strong> Total bobot harus = 100%.<br>
+          Saat ini: <span id="bobotTotal" style="font-weight:700;color:var(--green)">100%</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-head">
+        <div class="card-icon">📦</div>
+        <h2>Input Alternatif</h2>
+        <span class="card-badge" id="aCount">4 produk</span>
+      </div>
+      <div class="card-body">
+        <div class="fgroup"><label class="lbl">Nama Produk / UMKM</label><input type="text" id="aNama" placeholder="Contoh: Jilbab Paris..."></div>
+        <div class="sec-label">Nilai Kriteria (skala bebas, mis. 1–5)</div>
+        <div id="avInputs" class="av-grid"></div>
+        <button class="btn-add" onclick="addAlt()" style="margin-top:8px;">＋ Tambah Produk</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-head"><div class="card-icon">▶</div><h2>Kalkulasi SAW</h2></div>
+      <div class="card-body">
+        <div class="formula-box" style="margin-bottom:10px;">
+          <strong>Rumus Normalisasi:</strong><br>
+          Benefit: <code>r<sub>ij</sub> = x<sub>ij</sub> / max(x<sub>j</sub>)</code><br>
+          Cost: &nbsp;&nbsp;<code>r<sub>ij</sub> = min(x<sub>j</sub>) / x<sub>ij</sub></code><br>
+          <br>
+          <strong>Skor Akhir:</strong> <code>V<sub>i</sub> = Σ (w<sub>j</sub> × r<sub>ij</sub>)</code>
+        </div>
+        <button class="btn-calc" onclick="hitung()">▶ Hitung Ranking SAW</button>
+        <button class="btn-reset" onclick="resetData()">↺ Reset Semua Alternatif</button>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="section-bottom">
+
+    <div class="steps">
+      <div class="step done" id="s1">① Kriteria</div>
+      <div class="step" id="s2">② Alternatif</div>
+      <div class="step" id="s3">③ Normalisasi</div>
+      <div class="step" id="s4">④ Ranking</div>
+    </div>
+
+    <div class="card">
+      <div class="card-head"><div class="card-icon">📊</div><h2>Tabel Keputusan</h2></div>
+      <div class="tab-row">
+        <button class="tab-btn active" id="tb1" onclick="switchTab('t1','tb1')">Matriks Asal (X)</button>
+        <button class="tab-btn" id="tb2" onclick="switchTab('t2','tb2')">Matriks Normalisasi (R)</button>
+        <button class="tab-btn" id="tb3" onclick="switchTab('t3','tb3')">Skor Tertimbang (V)</button>
+      </div>
+      <div id="t1" class="tab-pane active"><div class="empty"><div class="empty-icon">📋</div><p>Tambahkan alternatif produk untuk melihat matriks.</p></div></div>
+      <div id="t2" class="tab-pane"><div class="empty"><div class="empty-icon">🔢</div><p>Tekan "Hitung" untuk normalisasi.</p></div></div>
+      <div id="t3" class="tab-pane"><div class="empty"><div class="empty-icon">📐</div><p>Tekan "Hitung" untuk melihat skor tertimbang.</p></div></div>
+    </div>
+
+    <div class="card">
+      <div class="card-head"><div class="card-icon">🏆</div><h2>Hasil Ranking SAW</h2></div>
+      <div class="card-body" id="rankOut">
+        <div class="empty"><div class="empty-icon">🏆</div><p>Tekan "Hitung Ranking SAW" untuk melihat hasil akhir keputusan.</p></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+// ═══════════════ STATE ═══════════════
+let K = [
+  { id:'C1', nama:'Modal Produksi',      bobot:20, tipe:'cost'    },
+  { id:'C2', nama:'Permintaan Pasar',    bobot:30, tipe:'benefit' },
+  { id:'C3', nama:'Margin Keuntungan',   bobot:25, tipe:'benefit' },
+  { id:'C4', nama:'Daya Tahan Produk',   bobot:15, tipe:'benefit' },
+  { id:'C5', nama:'Kemudahan Produksi',  bobot:10, tipe:'benefit' },
+];
+let A = [
+  { nama:'Jilbab Paris (Fashion)',         nilai:[2,4,3,5,5] },
+  { nama:'Gelang Handmade (Aksesoris)',    nilai:[1,3,5,5,2] },
+  { nama:'Basreng (Makanan)',              nilai:[3,5,4,4,3] },
+  { nama:'Pisang coklat (Makanan)',        nilai:[3,4,3,1,3] },
+];
+let kCounter = 6;
+
+// ═══════════════ KRITERIA ═══════════════
+function renderK() {
+  const total = K.reduce((s,k)=>s+k.bobot,0);
+  document.getElementById('bobotTotal').textContent = total+'%';
+  document.getElementById('bobotTotal').style.color = total===100 ? 'var(--green)' : 'var(--red)';
+  document.getElementById('kCount').textContent = K.length+' kriteria';
+
+  const tb = document.getElementById('ktbody');
+  tb.innerHTML = K.map((k,i)=>`
+    <tr>
+      <td><strong>${k.id}</strong></td>
+      <td style="min-width:85px;font-size:12px;">${k.nama}</td>
+      <td>
+        <div style="display:flex;align-items:center;gap:6px;">
+          <input type="range" min="1" max="100" value="${k.bobot}" style="width:55px;"
+            oninput="K[${i}].bobot=+this.value;document.getElementById('bv${i}').textContent=this.value+'%';renderK();renderRaw();">
+          <span class="bnum" id="bv${i}">${k.bobot}%</span>
+        </div>
+      </td>
+      <td><span class="badge ${k.tipe==='benefit'?'b-benefit':'b-cost'}">${k.tipe}</span></td>
+      <td>${K.length>1?`<button class="btn-del" onclick="delK(${i})">✕</button>`:''}</td>
+    </tr>
+  `).join('');
+  renderAVInputs();
+  renderRaw();
+  updateSteps();
+}
+
+function addKriteria() {
+  const n = document.getElementById('kNama').value.trim();
+  const b = parseInt(document.getElementById('kBobot').value)||10;
+  const t = document.getElementById('kTipe').value;
+  if (!n) { alert('Nama kriteria harus diisi!'); return; }
+  K.push({ id:'C'+kCounter++, nama:n, bobot:Math.min(100,Math.max(1,b)), tipe:t });
+  A.forEach(a=>a.nilai.push(5));
+  document.getElementById('kNama').value='';
+  renderK();
+}
+
+function delK(i) {
+  if (K.length<=1) return;
+  K.splice(i,1);
+  A.forEach(a=>a.nilai.splice(i,1));
+  renderK();
+}
+
+// ═══════════════ ALT INPUTS ═══════════════
+function renderAVInputs() {
+  const c = document.getElementById('avInputs');
+  const cols = Math.min(K.length,3);
+  c.style.gridTemplateColumns = `repeat(${cols},1fr)`;
+  c.innerHTML = K.map((k,i)=>`
+    <div class="fgroup" style="margin:0;">
+      <label class="lbl" style="font-size:11px;">${k.id} — ${k.nama.length>14?k.nama.slice(0,14)+'…':k.nama} <span class="badge ${k.tipe==='benefit'?'b-benefit':'b-cost'}" style="font-size:9px; padding: 1px 4px;">${k.tipe}</span></label>
+      <input type="number" id="av${i}" placeholder="Nilai..." min="0" step="0.01">
+    </div>
+  `).join('');
+}
+
+function addAlt() {
+  const n = document.getElementById('aNama').value.trim();
+  if (!n) { alert('Nama produk harus diisi!'); return; }
+  const vals = K.map((_,i)=>{
+    const v = parseFloat(document.getElementById('av'+i).value);
+    return isNaN(v) ? null : v;
+  });
+  if (vals.some(v=>v===null)) { alert('Semua nilai kriteria harus diisi!'); return; }
+  A.push({ nama:n, nilai:vals });
+  document.getElementById('aNama').value='';
+  K.forEach((_,i)=>{ document.getElementById('av'+i).value=''; });
+  renderRaw();
+  updateSteps();
+}
+
+// ═══════════════ RAW TABLE ═══════════════
+function renderRaw() {
+  if (A.length===0) {
+    document.getElementById('t1').innerHTML='<div class="empty"><div class="empty-icon">📋</div><p>Tambahkan produk alternatif.</p></div>';
+    document.getElementById('aCount').textContent='0 produk';
+    return;
+  }
+  document.getElementById('aCount').textContent=A.length+' produk';
+
+  let h = '<div class="tbl-wrap"><table class="dtbl">';
+  h += '<tr class="hrow">';
+  h += '<th>Alternatif</th>';
+  K.forEach(k=>h+=`<th>${k.id}<br><small style="font-weight:500;opacity:.85">${k.nama}</small></th>`);
+  h += '</tr>';
+  h += '<tr class="brow"><td>⚖ Bobot (%)</td>';
+  K.forEach(k=>h+=`<td>${k.bobot}%</td>`);
+  h += '</tr>';
+  h += '<tr class="trow"><td>Tipe</td>';
+  K.forEach(k=>h+=`<td>${k.tipe}</td>`);
+  h += '</tr>';
+  A.forEach((a,i)=>{
+    h += `<tr><td>${a.nama} <button class="btn-del" onclick="delA(${i})">✕</button></td>`;
+    a.nilai.forEach(v=>h+=`<td>${v}</td>`);
+    h += '</tr>';
+  });
+  h += '</table></div>';
+  document.getElementById('t1').innerHTML=h;
+}
+
+function delA(i) {
+  A.splice(i,1);
+  renderRaw();
+  updateSteps();
+}
+
+// ═══════════════ SAW CALCULATION ═══════════════
+function hitung() {
+  if (A.length===0) { alert('Tambahkan minimal 1 produk!'); return; }
+  const total = K.reduce((s,k)=>s+k.bobot,0);
+  if (total===0) { alert('Total bobot tidak boleh 0!'); return; }
+
+  const n=K.length, m=A.length;
+  const mins=[], maxs=[];
+  for(let j=0;j<n;j++){
+    const vs=A.map(a=>a.nilai[j]);
+    mins[j]=Math.min(...vs);
+    maxs[j]=Math.max(...vs);
+  }
+
+  const R = A.map(a=>K.map((k,j)=>{
+    const v=a.nilai[j];
+    if(k.tipe==='benefit') return maxs[j]===0?0:v/maxs[j];
+    else return v===0?0:mins[j]/v;
+  }));
+
+  const W = K.map(k=>k.bobot/total);
+  const V = R.map((row,i)=>({
+    nama:A[i].nama,
+    skor: row.reduce((s,r,j)=>s+r*W[j],0),
+    normRow:row
+  }));
+  V.sort((a,b)=>b.skor-a.skor);
+  const maxSkor=V[0].skor;
+
+  renderNorm(R,mins,maxs);
+  renderVTable(R,W,V);
+  renderRanking(V,maxSkor);
+  document.getElementById('s3').classList.add('done');
+  document.getElementById('s4').classList.add('done');
+  switchTabDirect('t2','tb2');
+}
+
+function renderNorm(R,mins,maxs){
+  let h='<div class="tbl-wrap"><table class="dtbl">';
+  h+='<tr class="nhead"><th>Alternatif</th>';
+  K.forEach((k,j)=>h+=`<th>${k.id}<br><small style="font-weight:500;opacity:.75">${k.tipe==='benefit'?'max='+maxs[j]:'min='+mins[j]}</small></th>`);
+  h+='</tr>';
+  R.forEach((row,i)=>{
+    h+=`<tr><td>${A[i].nama}</td>`;
+    row.forEach(v=>h+=`<td>${v.toFixed(4)}</td>`);
+    h+='</tr>';
+  });
+  h+='</table></div>';
+  document.getElementById('t2').innerHTML=h;
+}
+
+function renderVTable(R,W,V){
+  let h='<div class="tbl-wrap"><table class="dtbl">';
+  h+='<tr class="nhead"><th>Alternatif</th>';
+  K.forEach((k,j)=>h+=`<th>${k.id}<br><small style="font-weight:500;opacity:.75">w=${(W[j]*100).toFixed(1)}%</small></th>`);
+  h+='<th>Skor Vi</th></tr>';
+  h+='<tr class="brow"><td>⚖ Bobot Normalisasi</td>';
+  W.forEach(w=>h+=`<td>${w.toFixed(4)}</td>`);
+  h+='<td>—</td></tr>';
+  A.forEach((a,i)=>{
+    const wRow = R[i].map((r,j)=>r*W[j]);
+    const skor = wRow.reduce((s,v)=>s+v,0);
+    h+=`<tr><td>${a.nama}</td>`;
+    wRow.forEach(v=>h+=`<td>${v.toFixed(4)}</td>`);
+    h+=`<td style="font-weight:800;color:var(--green)">${skor.toFixed(4)}</td></tr>`;
+  });
+  h+='</table></div>';
+  document.getElementById('t3').innerHTML=h;
+}
+
+function renderRanking(V,maxSkor){
+  let h='';
+  const top=V[0];
+  h+=`<div class="rec"><div class="rec-em">🏆</div><div><div class="rec-name">Produk Unggulan: ${top.nama}</div><div class="rec-sub">Skor SAW tertinggi <strong>${(top.skor*100).toFixed(4)}</strong> — Direkomendasikan sebagai Produk Unggulan UMKM.</div></div></div>`;
+  h+='<table class="rtbl"><thead><tr><th>Rank</th><th>Produk / Alternatif</th><th>Skor Visual</th><th style="text-align:right">Skor SAW (Vi)</th></tr></thead><tbody>';
+  V.forEach((v,i)=>{
+    const r=i+1;
+    const rc=r===1?'r1':r===2?'r2':r===3?'r3':'rx';
+    const mc=r===1?'m1':r===2?'m2':r===3?'m3':'mx';
+    const pct=(v.skor/maxSkor*100).toFixed(1);
+    h+=`<tr class="${rc}"><td><span class="medal ${mc}">${r}</span></td><td><strong>${v.nama}</strong></td>
+    <td><div class="bar-wrap"><div class="bar"><div class="bar-fill" style="width:${pct}%"></div></div><span style="font-size:11px;color:var(--text2);min-width:38px;text-align:right;">${pct}%</span></div></td>
+    <td>${(v.skor).toFixed(4)}</td></tr>`;
+  });
+  h+='</tbody></table>';
+  h+=`<div class="note" style="margin-top:10px;"><strong>Bobot yang digunakan:</strong> ${K.map(k=>k.id+'='+k.bobot+'%').join(' | ')}</div>`;
+  document.getElementById('rankOut').innerHTML=h;
+}
+
+// ═══════════════ TABS & STEPS ═══════════════
+function switchTab(pane,btn) {
+  document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById(pane).classList.add('active');
+  document.getElementById(btn).classList.add('active');
+}
+function switchTabDirect(pane,btn) {
+  document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById(pane).classList.add('active');
+  document.getElementById(btn).classList.add('active');
+}
+function updateSteps(){
+  document.getElementById('s1').classList.toggle('done',K.length>0);
+  document.getElementById('s2').classList.toggle('done',A.length>0);
+}
+function resetData(){
+  if(!confirm('Reset semua alternatif produk? Kriteria tetap.')) return;
+  A=[];
+  renderRaw();
+  document.getElementById('t2').innerHTML='<div class="empty"><div class="empty-icon">🔢</div><p>Tekan "Hitung" untuk normalisasi.</p></div>';
+  document.getElementById('t3').innerHTML='<div class="empty"><div class="empty-icon">📐</div><p>Tekan "Hitung" untuk skor tertimbang.</p></div>';
+  document.getElementById('rankOut').innerHTML='<div class="empty"><div class="empty-icon">🏆</div><p>Tekan "Hitung Ranking SAW" untuk hasil akhir.</p></div>';
+  document.getElementById('s3').classList.remove('done');
+  document.getElementById('s4').classList.remove('done');
+  updateSteps();
+}
+
+// INIT
+renderK();
+</script>
+</body>
+</html>
